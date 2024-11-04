@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez tout sur les bananes : productions, conseils, catégories et plus encore.">
+    <meta name="keywords" content="bananes, productions, catégories, bio, plantain">
+    <meta name="author" content="Banana Word Business">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <title>Banana Word Business</title>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <div class="container">
+      <a class="navbar-brand" href="#">Banana Word Business</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#presentation">Présentation</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="shop.html">Shop</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#categories">Catégories</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#production">Production</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#contact">Contact</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section text-center text-white">
+  <div class="hero-overlay">
+      <div class="container">
+          <h1 class="display-4">Bienvenue dans le Monde des Bananes</h1>
+          <p class="lead">Découvrez nos variétés, conseils et plus encore !</p>
+          <a href="#categories" class="btn btn-light btn-lg mt-3">Explorer Maintenant</a>
+      </div>
+  </div>
+</section>
+
+<!-- Présentation -->
+<section id="presentation" class="section py-5 bg-gradient">
+  <div class="container text-center">
+      <h2>Présentation</h2>
+      <p>Notre entreprise se spécialise dans la production et la vente de bananes de haute qualité.</p>
+      <a href="shop.html" class="btn btn-primary btn-lg mt-3">Découvrir nos produits</a>
+  </div>
+</section>
+
+
+<!-- Carrousel d'Images -->
+<section class="py-5 bg-light">
+  <div class="container">
+      <h2 class="text-center mb-4">Nos Bananes en Images</h2>
+      <div id="bananaCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <img src="images/1.jpg" class="d-block w-100" alt="Bananes">
+              </div>
+              <div class="carousel-item">
+                  <img src="images/2.jpg" class="d-block w-100" alt="Bananes">
+              </div>
+              <div class="carousel-item">
+                  <img src="images/3.jpg" class="d-block w-100" alt="Bananes">
+              </div>
+              <div class="carousel-item">
+                  <img src="images/4.jpg" class="d-block w-100" alt="Bananes">
+              </div>
+              <div class="carousel-item">
+                  <img src="images/5.jpg" class="d-block w-100" alt="Bananes">
+              </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#bananaCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Précédent</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#bananaCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Suivant</span>
+          </button>
+      </div>
+  </div>
+</section>
+
+
+<!-- Catégories de Bananes -->
+<section id="categories" class="section py-5 bg-light">
+  <div class="container text-center">
+      <h2 class="mb-4">Catégories de Bananes</h2>
+      <div class="row">
+          <div class="col-md-3 mb-4">
+              <div class="card category-card">
+                  <img src="images/6.jpg" class="card-img-top" alt="Bananes de Table" data-bs-toggle="modal" data-bs-target="#categoryModal1">
+                  <div class="card-body">
+                      <h5 class="card-title">Bananes de Table</h5>
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal1">Détails</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 mb-4">
+              <div class="card category-card">
+                  <img src="images/7.jpg" class="card-img-top" alt="Bananes Plantain" data-bs-toggle="modal" data-bs-target="#categoryModal2">
+                  <div class="card-body">
+                      <h5 class="card-title">Bananes Plantain</h5>
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal2">Détails</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 mb-4">
+              <div class="card category-card">
+                  <img src="images/8.jpg" class="card-img-top" alt="Bananes Rouges" data-bs-toggle="modal" data-bs-target="#categoryModal3">
+                  <div class="card-body">
+                      <h5 class="card-title">Bananes Rouges</h5>
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal3">Détails</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 mb-4">
+              <div class="card category-card">
+                  <img src="images/9.jpg" class="card-img-top" alt="Bananes Bio" data-bs-toggle="modal" data-bs-target="#categoryModal4">
+                  <div class="card-body">
+                      <h5 class="card-title">Bananes Bio</h5>
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal4">Détails</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Modales pour chaque catégorie -->
+<div class="modal fade" id="categoryModal1" tabindex="-1" aria-labelledby="categoryModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="categoryModalLabel1">Bananes de Table</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p>Les bananes de table sont idéales pour une consommation directe, elles sont sucrées et savoureuses.</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="categoryModal2" tabindex="-1" aria-labelledby="categoryModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="categoryModalLabel2">Bananes Plantain</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p>Les bananes plantain sont parfaites pour la cuisson, elles sont plus fermes et moins sucrées.</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="categoryModal3" tabindex="-1" aria-labelledby="categoryModalLabel3" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="categoryModalLabel3">Bananes Rouges</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p>Les bananes rouges ont une saveur douce et légèrement épicée, parfaites pour des plats variés.</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="categoryModal4" tabindex="-1" aria-labelledby="categoryModalLabel4" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="categoryModalLabel4">Bananes Bio</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p>Nos bananes bio sont cultivées sans pesticides et respectent l'environnement.</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Production -->
+<section id="production" class="section py-5 bg-gradient">
+  <div class="container text-center">
+      <h2>Production</h2>
+      <p>Nous travaillons avec des producteurs locaux pour garantir la meilleure qualité.</p>
+      <div id="mapContainer" style="height: 500px; margin-top: 20px;"></div>
+  </div>
+</section>
+
+<!-- Inclure l'API Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<script>
+  function initMap() {
+      // Création de la carte
+      const map = new google.maps.Map(document.getElementById("mapContainer"), {
+          center: { lat: 10.0, lng: -75.0 }, // Coordonnées par défaut
+          zoom: 6, // Niveau de zoom
+          styles: [ // Styles de carte personnalisés
+              {
+                  featureType: "water",
+                  stylers: [{ color: "#aeeeee" }]
+              },
+              {
+                  featureType: "landscape",
+                  stylers: [{ color: "#f0e4d7" }]
+              },
+              {
+                  featureType: "road",
+                  elementType: "geometry",
+                  stylers: [{ color: "#ffffff" }]
+              }
+          ]
+      });
+
+      // Ajoutez des marqueurs pour les producteurs
+      const markers = [
+          { position: { lat: 10.5, lng: -74.5 }, title: "Producteur 1" },
+          { position: { lat: 10.3, lng: -75.5 }, title: "Producteur 2" },
+          { position: { lat: 10.1, lng: -75.0 }, title: "Producteur 3" },
+      ];
+
+      markers.forEach(markerData => {
+          new google.maps.Marker({
+              position: markerData.position,
+              map: map,
+              title: markerData.title,
+          });
+      });
+  }
+</script>
+
+<!-- Contact -->
+<section id="newsletter" class="section py-5 bg-light text-dark">
+  <div class="container text-center">
+      <h2>Abonnez-vous à notre Newsletter</h2>
+      <p>Restez informé des dernières nouvelles et offres spéciales en vous abonnant à notre newsletter.</p>
+      <form action="votre-endpoint-de-subscription" method="POST" class="mt-4">
+          <div class="input-group justify-content-center">
+              <input type="email" class="form-control" placeholder="Entrez votre email" required aria-label="Email" aria-describedby="subscribe-button">
+              <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit" id="subscribe-button">S'abonner</button>
+              </div>
+          </div>
+      </form>
+      <div class="mt-3">
+          <p>Rejoignez plus de 10,000 abonnés!</p>
+      </div>
+  </div>
+</section>
+
+<footer class="footer bg-dark text-white py-4">
+  <div class="container text-center">
+      <p>&copy; 2024 Banana Word Business. Tous droits réservés.</p>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="#about" class="text-white">À propos</a></li>
+          <li class="list-inline-item"><a href="#services" class="text-white">Services</a></li>
+          <li class="list-inline-item"><a href="#contact" class="text-white">Contact</a></li>
+      </ul>
+      <div class="social-icons mt-3">
+          <a href="https://www.facebook.com" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.twitter.com" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- Modales des Catégories avec Images -->
+<div class="modal fade" id="categoryModal1" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Bananes de Table</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/10.jpg" alt="Bananes de Table" class="img-fluid mb-3">
+                <p>Idéales pour la consommation directe, riches en nutriments et savoureuses.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="categoryModal2" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Bananes Plantain</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/11.jpg" alt="Bananes Plantain" class="img-fluid mb-3">
+                <p>Principalement utilisées pour la cuisson, ces bananes sont très populaires en Afrique.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="categoryModal3" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Bananes Rouges</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/12.jpg" alt="Bananes Rouges" class="img-fluid mb-3">
+                <p>Douces et sucrées, elles se distinguent par leur couleur unique et leur goût exceptionnel.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="categoryModal4" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Bananes Bio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/13.jpg" alt="Bananes Bio" class="img-fluid mb-3">
+                <p>Cultivées sans pesticides ni produits chimiques, elles sont une option plus saine et écologique.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<script> Pi.init({ version: "2.0", sandbox: true }) </script>
+</body>
+</html>

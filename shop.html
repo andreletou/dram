@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Achetez vos bananes en ligne : prix, variété et plus !">
+    <meta name="keywords" content="bananes, achat, prix, bio, plantain">
+    <meta name="author" content="Banana Word Business">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles pour les cartes */
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-body {
+            flex-grow: 1; /* Pour faire en sorte que le corps prenne tout l'espace */
+        }
+        .card-img-top {
+            object-fit: cover; /* Pour s'assurer que l'image remplit bien la carte */
+            height: 200px; /* Hauteur fixe pour toutes les images */
+        }
+    </style>
+    <title>Boutique de Bananes</title>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Banana Word Business</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#presentation">Présentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#categories">Catégories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#production">Production</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop.html">Boutique</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Boutique Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Notre Boutique de Bananes</h2>
+
+        <!-- Catégorie : Bananes de Table -->
+        <h3>Bananes de Table</h3>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/1.jpg" class="card-img-top" alt="Bananes de Table">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes de Table</h5>
+                        <p class="card-text">Prix : 1 000 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20de%20table." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/2.jpg" class="card-img-top" alt="Bananes Douces">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Douces</h5>
+                        <p class="card-text">Prix : 1 200 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20douces." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/3.jpg" class="card-img-top" alt="Bananes Jaunes">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Jaunes</h5>
+                        <p class="card-text">Prix : 1 300 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20jaunes." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/4.jpg" class="card-img-top" alt="Bananes Bio">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Bio</h5>
+                        <p class="card-text">Prix : 2 000 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20bio." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/5.jpg" class="card-img-top" alt="Bananes Frits">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Frits</h5>
+                        <p class="card-text">Prix : 1 800 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20frits." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Catégorie : Bananes Plantain -->
+        <h3>Bananes Plantain</h3>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/6.jpg" class="card-img-top" alt="Bananes Plantain">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Plantain</h5>
+                        <p class="card-text">Prix : 1 200 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20plantain." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/7.jpg" class="card-img-top" alt="Bananes Plantain Mûres">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Plantain Mûres</h5>
+                        <p class="card-text">Prix : 1 500 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20plantain%20mures." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/8.jpg" class="card-img-top" alt="Bananes Plantain Frites">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Plantain Frites</h5>
+                        <p class="card-text">Prix : 1 800 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20plantain%20frites." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/9.jpg" class="card-img-top" alt="Bananes Plantain Sèches">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Plantain Sèches</h5>
+                        <p class="card-text">Prix : 2 200 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20plantain%20seches." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/10.jpg" class="card-img-top" alt="Bananes Plantain Crues">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Plantain Crues</h5>
+                        <p class="card-text">Prix : 1 600 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20plantain%20crues." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Catégorie : Bananes Exotiques -->
+        <h3>Bananes Exotiques</h3>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/11.jpg" class="card-img-top" alt="Bananes Rouges">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Rouges</h5>
+                        <p class="card-text">Prix : 1 500 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20rouges." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/12.jpg" class="card-img-top" alt="Bananes Sucrées">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Sucrées</h5>
+                        <p class="card-text">Prix : 1 700 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20sucrees." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/13.jpg" class="card-img-top" alt="Bananes Grises">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Grises</h5>
+                        <p class="card-text">Prix : 2 500 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20grises." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/14.jpg" class="card-img-top" alt="Bananes Noires">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Noires</h5>
+                        <p class="card-text">Prix : 2 700 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20noires." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/15.jpg" class="card-img-top" alt="Bananes Turbans">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Turbans</h5>
+                        <p class="card-text">Prix : 2 800 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20turbans." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Catégorie : Bananes Desserts -->
+        <h3>Bananes Desserts</h3>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/16.jpg" class="card-img-top" alt="Bananes à Dessert">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes à Dessert</h5>
+                        <p class="card-text">Prix : 1 900 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20a%20dessert." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/17.jpg" class="card-img-top" alt="Bananes Fines">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Fines</h5>
+                        <p class="card-text">Prix : 2 000 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20fines." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/18.jpg" class="card-img-top" alt="Bananes en Purée">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes en Purée</h5>
+                        <p class="card-text">Prix : 1 500 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20en%20puree." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/19.jpg" class="card-img-top" alt="Bananes Caramélisées">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes Caramélisées</h5>
+                        <p class="card-text">Prix : 2 100 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20caramelisees." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/20.jpg" class="card-img-top" alt="Bananes en Confiture">
+                    <div class="card-body">
+                        <h5 class="card-title">Bananes en Confiture</h5>
+                        <p class="card-text">Prix : 2 300 CFA</p>
+                        <a href="https://wa.me/22898144846?text=Je%20veux%20acheter%20des%20bananes%20en%20confiture." class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer bg-dark text-white py-4">
+    <div class="container text-center">
+        <p>&copy; 2024 Banana Word Business. Tous droits réservés.</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#about" class="text-white">À propos</a></li>
+            <li class="list-inline-item"><a href="#services" class="text-white">Services</a></li>
+            <li class="list-inline-item"><a href="#contact" class="text-white">Contact</a></li>
+        </ul>
+        <div class="social-icons mt-3">
+            <a href="https://www.facebook.com" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+  </footer>
+  
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
