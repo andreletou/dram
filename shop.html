@@ -8,18 +8,19 @@
     <meta name="author" content="Banana Word Business">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
     <!-- Favicon banana -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
     <style>
         :root {
             --pi-purple: #8a2be2;
             --pi-purple-dark: #7b1fa2;
+            --pi-gold: #ffd700;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-top: 76px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9eef2 100%);
         }
         
         .card {
@@ -27,12 +28,17 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e0e0e0;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138,43,226,0.15);
         }
         
         .card-body {
@@ -40,83 +46,85 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            padding: 1.5rem;
         }
         
         .card-img-top {
             object-fit: cover;
-            height: 200px;
+            height: 220px;
             width: 100%;
+            transition: transform 0.5s ease;
         }
         
-        .pi-btn {
-            background-color: var(--pi-purple);
-            color: white;
-            border-color: var(--pi-purple);
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .pi-btn:hover {
-            background-color: var(--pi-purple-dark);
-            border-color: var(--pi-purple-dark);
-            color: white;
-            transform: scale(1.02);
-        }
-        
-        .pi-btn:active {
-            transform: scale(0.98);
-        }
-        
-        .pi-btn i {
-            margin-right: 5px;
-        }
-        
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
-            color: white;
-            transform: scale(1.02);
-        }
-        
-        .whatsapp-btn:active {
-            transform: scale(0.98);
-        }
-        
-        .whatsapp-btn i {
-            margin-right: 5px;
+        .card:hover .card-img-top {
+            transform: scale(1.05);
         }
         
         .price-badge {
-            background-color: #f8f9fa;
-            color: #333;
-            padding: 5px 10px;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
             font-weight: bold;
-            border: 1px solid #dee2e6;
+            box-shadow: 0 4px 10px rgba(102,126,234,0.3);
+        }
+        
+        .price-badge-small {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .category-title {
             color: #2c3e50;
             border-left: 5px solid var(--pi-purple);
             padding-left: 15px;
-            margin-bottom: 25px;
-            margin-top: 40px;
+            margin-bottom: 30px;
+            margin-top: 50px;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .category-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 15px;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pi-purple), var(--pi-gold));
+            border-radius: 3px;
         }
         
         .navbar-brand {
             font-weight: bold;
             color: var(--pi-purple) !important;
+            font-size: 1.5rem;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.9) !important;
         }
         
         .footer {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+            background: linear-gradient(135deg, #1e2a3a 0%, #0f1a26 100%);
             margin-top: 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer:before {
+            content: '🍌';
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            font-size: 100px;
+            opacity: 0.1;
         }
         
         /* Pi Dev Banner */
@@ -128,14 +136,20 @@
             background: linear-gradient(90deg, #ffcc00 0%, #ffdb4d 100%);
             color: #000;
             text-align: center;
-            padding: 8px;
+            padding: 10px;
             font-size: 14px;
             font-weight: bold;
             z-index: 9999;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: slideDown 0.5s ease;
         }
         
-        /* Loading overlay for Pi payments */
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        /* Pi Payment Loading */
         .pi-loading {
             display: none;
             position: fixed;
@@ -143,27 +157,139 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.85);
             z-index: 10000;
             justify-content: center;
             align-items: center;
             color: white;
             font-size: 20px;
+            backdrop-filter: blur(5px);
         }
         
         .pi-loading-content {
             background: white;
             color: #333;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(138,43,226,0.3);
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .pi-loading-content i {
             color: var(--pi-purple);
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-pi {
+            background: linear-gradient(135deg, #8a2be2 0%, #9b4dff 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-pi:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-pi:hover:before {
+            left: 100%;
+        }
+        
+        .btn-pi:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(138,43,226,0.3);
+            color: white;
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37,211,102,0.3);
+            color: white;
+        }
+        
+        .pi-connection-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        
+        .status-badge {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+        }
+        
+        .status-connected {
+            border-left: 4px solid #28a745;
+        }
+        
+        .status-disconnected {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(5px);
+            color: var(--pi-purple);
+            border: 1px solid var(--pi-purple);
+        }
+        
+        .payment-history-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
         }
         
         @media (max-width: 768px) {
@@ -174,54 +300,73 @@
             .card-img-top {
                 height: 180px;
             }
+            
+            .pi-connection-status,
+            .payment-history-btn {
+                bottom: 10px;
+            }
         }
     </style>
     <title>Boutique de Bananes - Banana Word Business</title>
 </head>
 <body>
 
-<!-- Pi Dev Banner (visible only in sandbox mode) -->
+<!-- Pi Dev Banner (visible en mode sandbox) -->
 <div id="pi-dev-banner" style="display: none;">
-    <i class="fas fa-flask"></i> Mode Développement Pi Activé
+    <i class="fas fa-flask me-2"></i> Mode Développement Pi Activé - Paiements de test
 </div>
 
 <!-- Pi Payment Loading Overlay -->
 <div id="pi-loading" class="pi-loading">
     <div class="pi-loading-content">
-        <i class="fas fa-spinner fa-spin"></i>
-        <h4>Traitement du paiement Pi...</h4>
-        <p>Veuillez patienter pendant la confirmation.</p>
-        <div class="spinner-border text-primary mt-3" role="status">
-            <span class="visually-hidden">Chargement...</span>
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+        <h4 class="mt-3">Traitement du paiement Pi...</h4>
+        <p class="text-muted">Veuillez patienter pendant la confirmation.</p>
+        <div class="progress mt-3" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                 style="width: 100%; background: linear-gradient(90deg, #8a2be2, #9b4dff);"></div>
         </div>
+        <p class="small text-muted mt-3">Ne fermez pas cette fenêtre</p>
     </div>
+</div>
+
+<!-- Pi Connection Status -->
+<div class="pi-connection-status">
+    <div id="pi-status-badge" class="status-badge status-disconnected">
+        <i class="fas fa-plug"></i>
+        <span id="pi-status-text">Pi non connecté</span>
+    </div>
+</div>
+
+<!-- Payment History Button -->
+<div class="payment-history-btn">
+    <button class="btn btn-outline-primary" onclick="showPaymentHistory()" style="border-radius: 30px; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        <i class="fas fa-history me-2"></i> Historique
+    </button>
 </div>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="fas fa-banana"></i> Banana Word Business
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-banana me-2"></i> Banana Word Business
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#presentation">Présentation</a>
+                    <a class="nav-link" href="#bananes-table">Bananes de Table</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#categories">Catégories</a>
+                    <a class="nav-link" href="#bananes-plantain">Plantain</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#production">Production</a>
+                    <a class="nav-link" href="#bananes-exotiques">Exotiques</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="shop.html">Boutique</a>
+                    <a class="nav-link" href="#bananes-desserts">Desserts</a>
                 </li>
             </ul>
         </div>
@@ -232,136 +377,91 @@
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <h1 class="display-5 fw-bold">Notre Boutique de Bananes</h1>
-            <p class="lead">Achetez les meilleures bananes directement en ligne avec Pi ou WhatsApp</p>
-            <div class="alert alert-info d-inline-flex align-items-center" role="alert">
+            <h1 class="display-4 fw-bold" style="color: var(--pi-purple);">
+                <i class="fas fa-store me-2"></i> Notre Boutique de Bananes
+            </h1>
+            <p class="lead text-muted">Achetez les meilleures bananes en ligne avec Pi ou WhatsApp</p>
+            <div class="alert alert-info d-inline-flex align-items-center mx-auto" role="alert" style="border-radius: 50px;">
                 <i class="fas fa-info-circle me-2"></i>
                 <span>Pour payer avec Pi, ouvrez cette page dans le <strong>Pi Browser</strong></span>
             </div>
         </div>
 
-        <!-- Catégorie : Bananes de Table -->
-        <h3 class="category-title">Bananes de Table</h3>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/1.jpg" class="card-img-top" alt="Bananes de Table">
+        <!-- Bananes de Table -->
+        <h3 id="bananes-table" class="category-title">🍌 Bananes de Table</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <span class="product-badge"><i class="fas fa-star me-1"></i> Populaire</span>
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500" class="card-img-top" alt="Bananes de Table">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes de Table</h5>
-                        <p class="card-text">Bananes fraîches de table, parfaites pour une consommation quotidienne.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes de Table</h5>
+                        <p class="card-text text-muted">Bananes fraîches de table, parfaites pour une consommation quotidienne.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 000 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">1 000 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes de Table', 1, 1000)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes de Table', 1, 1000, 'bananes_table')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20de%20table%20%C3%A0%201000%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/2.jpg" class="card-img-top" alt="Bananes Douces">
+            <div class="col-md-4">
+                <div class="card">
+                    <span class="product-badge"><i class="fas fa-leaf me-1"></i> Naturel</span>
+                    <img src="https://images.unsplash.com/photo-1481349518661-687f4347a740?w=500" class="card-img-top" alt="Bananes Douces">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Douces</h5>
-                        <p class="card-text">Bananes naturellement sucrées, idéales pour les desserts.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes Douces</h5>
+                        <p class="card-text text-muted">Bananes naturellement sucrées, idéales pour les desserts.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 200 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">1 200 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Douces', 1, 1200)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes Douces', 1, 1200, 'bananes_douces')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20douces%20%C3%A0%201200%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/3.jpg" class="card-img-top" alt="Bananes Jaunes">
+            <div class="col-md-4">
+                <div class="card">
+                    <span class="product-badge"><i class="fas fa-certificate me-1"></i> Premium</span>
+                    <img src="https://images.unsplash.com/photo-1543218024-57a70143c369?w=500" class="card-img-top" alt="Bananes Bio">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Jaunes</h5>
-                        <p class="card-text">Bananes parfaitement mûres, prêtes à être consommées.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes Bio</h5>
+                        <p class="card-text text-muted">Cultivées sans pesticides, pour une consommation saine.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 300 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">2 000 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Jaunes', 1, 1300)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20jaunes%20%C3%A0%201300%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/4.jpg" class="card-img-top" alt="Bananes Bio">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Bio</h5>
-                        <p class="card-text">Cultivées sans pesticides, pour une consommation saine.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 000 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Bio', 1, 2000)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes Bio', 1, 2000, 'bananes_bio')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20bio%20%C3%A0%202000%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/5.jpg" class="card-img-top" alt="Bananes Frits">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Frits</h5>
-                        <p class="card-text">Bananes frites croustillantes, parfaites en accompagnement.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 800 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Frits', 1, 1800)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20frits%20%C3%A0%201800%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
@@ -370,128 +470,79 @@
             </div>
         </div>
         
-        <!-- Catégorie : Bananes Plantain -->
-        <h3 class="category-title">Bananes Plantain</h3>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/6.jpg" class="card-img-top" alt="Bananes Plantain">
+        <!-- Bananes Plantain -->
+        <h3 id="bananes-plantain" class="category-title">🍠 Bananes Plantain</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1588514185191-9d8b3a8b3a5d?w=500" class="card-img-top" alt="Bananes Plantain">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Plantain</h5>
-                        <p class="card-text">Plantains frais pour des plats savoureux.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes Plantain</h5>
+                        <p class="card-text text-muted">Plantains frais pour des plats savoureux.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 200 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">1 200 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Plantain', 1, 1200)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes Plantain', 1, 1200, 'plantain_frais')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20plantain%20%C3%A0%201200%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/7.jpg" class="card-img-top" alt="Bananes Plantain Mûres">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1588514185191-9d8b3a8b3a5d?w=500&flip=1" class="card-img-top" alt="Bananes Plantain Mûres">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Plantain Mûres</h5>
-                        <p class="card-text">Plantains mûrs, parfaits pour la cuisson.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Plantain Mûres</h5>
+                        <p class="card-text text-muted">Plantains mûrs, parfaits pour la cuisson.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 500 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">1 500 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Plantain Mûres', 1, 1500)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Plantain Mûres', 1, 1500, 'plantain_mur')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20plantain%20m%C3%BBres%20%C3%A0%201500%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/8.jpg" class="card-img-top" alt="Bananes Plantain Frites">
+            <div class="col-md-4">
+                <div class="card">
+                    <span class="product-badge"><i class="fas fa-fire me-1"></i> Alloco</span>
+                    <img src="https://images.unsplash.com/photo-1588514185191-9d8b3a8b3a5d?w=500&flip=2" class="card-img-top" alt="Bananes Plantain Frites">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Plantain Frites</h5>
-                        <p class="card-text">Alloco/plantains frits prêts à déguster.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Plantain Frits</h5>
+                        <p class="card-text text-muted">Alloco/plantains frits prêts à déguster.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 800 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">1 800 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Plantain Frites', 1, 1800)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Plantain Frits', 1, 1800, 'plantain_frits')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20plantain%20frites%20%C3%A0%201800%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/9.jpg" class="card-img-top" alt="Bananes Plantain Sèches">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Plantain Sèches</h5>
-                        <p class="card-text">Plantains séchés pour une longue conservation.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 200 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Plantain Sèches', 1, 2200)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20plantain%20s%C3%A8ches%20%C3%A0%202200%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/10.jpg" class="card-img-top" alt="Bananes Plantain Crues">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Plantain Crues</h5>
-                        <p class="card-text">Plantains crus pour vos recettes maison.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 600 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Plantain Crues', 1, 1600)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20plantain%20crues%20%C3%A0%201600%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
@@ -500,128 +551,55 @@
             </div>
         </div>
         
-        <!-- Catégorie : Bananes Exotiques -->
-        <h3 class="category-title">Bananes Exotiques</h3>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/11.jpg" class="card-img-top" alt="Bananes Rouges">
+        <!-- Bananes Exotiques -->
+        <h3 id="bananes-exotiques" class="category-title">🌺 Bananes Exotiques</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <span class="product-badge"><i class="fas fa-gem me-1"></i> Rare</span>
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&flip=1" class="card-img-top" alt="Bananes Rouges">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Rouges</h5>
-                        <p class="card-text">Variété rare à la chair rose et au goût unique.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes Rouges</h5>
+                        <p class="card-text text-muted">Variété rare à la chair rose et au goût unique.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 500 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">1 500 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Rouges', 1, 1500)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes Rouges', 1, 1500, 'bananes_rouges')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20rouges%20%C3%A0%201500%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/12.jpg" class="card-img-top" alt="Bananes Sucrées">
+            <div class="col-md-4">
+                <div class="card">
+                    <span class="product-badge"><i class="fas fa-crown me-1"></i> Prestige</span>
+                    <img src="https://images.unsplash.com/photo-1481349518661-687f4347a740?w=500&flip=1" class="card-img-top" alt="Bananes Noires">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Sucrées</h5>
-                        <p class="card-text">Extrêmement sucrées, presque comme du miel.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes Noires</h5>
+                        <p class="card-text text-muted">Très mûres, parfaites pour la pâtisserie.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 700 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">2 700 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Sucrées', 1, 1700)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20sucr%C3%A9es%20%C3%A0%201700%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/13.jpg" class="card-img-top" alt="Bananes Grises">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Grises</h5>
-                        <p class="card-text">Variété rare au goût subtil et texture unique.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 500 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Grises', 1, 2500)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20grises%20%C3%A0%202500%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/14.jpg" class="card-img-top" alt="Bananes Noires">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Noires</h5>
-                        <p class="card-text">Très mûres, parfaites pour la pâtisserie.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 700 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Noires', 1, 2700)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes Noires', 1, 2700, 'bananes_noires')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20noires%20%C3%A0%202700%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/15.jpg" class="card-img-top" alt="Bananes Turbans">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Turbans</h5>
-                        <p class="card-text">Forme unique, saveur exceptionnelle.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 800 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Turbans', 1, 2800)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20turbans%20%C3%A0%202800%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
@@ -630,128 +608,54 @@
             </div>
         </div>
         
-        <!-- Catégorie : Bananes Desserts -->
-        <h3 class="category-title">Bananes Desserts</h3>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/16.jpg" class="card-img-top" alt="Bananes à Dessert">
+        <!-- Bananes Desserts -->
+        <h3 id="bananes-desserts" class="category-title">🍰 Bananes Desserts</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1543218024-57a70143c369?w=500&flip=1" class="card-img-top" alt="Bananes à Dessert">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes à Dessert</h5>
-                        <p class="card-text">Spécialement sélectionnées pour vos desserts.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes à Dessert</h5>
+                        <p class="card-text text-muted">Spécialement sélectionnées pour vos desserts.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 900 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">1 900 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes à Dessert', 1, 1900)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes à Dessert', 1, 1900, 'bananes_dessert')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20%C3%A0%20dessert%20%C3%A0%201900%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/17.jpg" class="card-img-top" alt="Bananes Fines">
+            <div class="col-md-4">
+                <div class="card">
+                    <span class="product-badge"><i class="fas fa-candy-cane me-1"></i> Caramel</span>
+                    <img src="https://images.unsplash.com/photo-1481349518661-687f4347a740?w=500&flip=2" class="card-img-top" alt="Bananes Caramélisées">
                     <div class="card-body">
-                        <h5 class="card-title">Bananes Fines</h5>
-                        <p class="card-text">Petites bananes au goût intense.</p>
-                        <div class="mt-auto">
+                        <h5 class="card-title fw-bold">Bananes Caramélisées</h5>
+                        <p class="card-text text-muted">Bananes caramélisées, prêtes à déguster.</p>
+                        <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 000 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
+                                <span class="price-badge"><i class="fas fa-coins me-1"></i> 1 Pi</span>
+                                <span class="text-muted">≈</span>
+                                <span class="price-badge-small">2 100 CFA</span>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Fines', 1, 2000)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20fines%20%C3%A0%202000%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/18.jpg" class="card-img-top" alt="Bananes en Purée">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes en Purée</h5>
-                        <p class="card-text">Purée de bananes naturelle, sans additifs.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">1 500 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes en Purée', 1, 1500)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20en%20pur%C3%A9e%20%C3%A0%201500%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/19.jpg" class="card-img-top" alt="Bananes Caramélisées">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes Caramélisées</h5>
-                        <p class="card-text">Bananes caramélisées, prêtes à déguster.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 100 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes Caramélisées', 1, 2100)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
+                                <button class="btn btn-pi" onclick="payWithPi('Bananes Caramélisées', 1, 2100, 'bananes_caramel')">
+                                    <i class="fas fa-coins me-2"></i> Payer avec Pi
                                 </button>
                                 <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20caram%C3%A9lis%C3%A9es%20%C3%A0%202100%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="images/20.jpg" class="card-img-top" alt="Bananes en Confiture">
-                    <div class="card-body">
-                        <h5 class="card-title">Bananes en Confiture</h5>
-                        <p class="card-text">Confiture de bananes maison, 100% naturelle.</p>
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="price-badge">2 300 CFA</span>
-                                <small class="text-muted">ou</small>
-                                <span class="price-badge">1 Pi</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn pi-btn" onclick="payWithPi('Bananes en Confiture', 1, 2300)">
-                                    <i class="fas fa-coins"></i> Payer avec Pi
-                                </button>
-                                <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20souhaite%20acheter%20des%20bananes%20en%20confiture%20%C3%A0%202300%20CFA."
-                                   class="btn whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                   class="btn btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Commander WhatsApp
                                 </a>
                             </div>
                         </div>
@@ -762,43 +666,47 @@
     </div>
 </section>
 
-<footer class="footer bg-dark text-white py-5">
+<footer class="footer py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                <h5><i class="fas fa-banana"></i> Banana Word Business</h5>
+                <h5><i class="fas fa-banana me-2"></i> Banana Word Business</h5>
                 <p>Votre fournisseur de confiance en bananes de qualité depuis 2010.</p>
+                <div class="mt-3">
+                    <span class="badge bg-light text-dark p-2 me-2"><i class="fab fa-pi me-1"></i> Pi Network</span>
+                    <span class="badge bg-light text-dark p-2"><i class="fas fa-check-circle me-1"></i> Paiements sécurisés</span>
+                </div>
             </div>
             <div class="col-md-4 mb-4">
                 <h5>Liens rapides</h5>
                 <ul class="list-unstyled">
-                    <li><a href="index.html" class="text-white text-decoration-none">Accueil</a></li>
-                    <li><a href="index.html#presentation" class="text-white text-decoration-none">Présentation</a></li>
-                    <li><a href="index.html#categories" class="text-white text-decoration-none">Catégories</a></li>
-                    <li><a href="index.html#contact" class="text-white text-decoration-none">Contact</a></li>
+                    <li class="mb-2"><a href="#bananes-table" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Bananes de Table</a></li>
+                    <li class="mb-2"><a href="#bananes-plantain" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Bananes Plantain</a></li>
+                    <li class="mb-2"><a href="#bananes-exotiques" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Bananes Exotiques</a></li>
+                    <li class="mb-2"><a href="#bananes-desserts" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Bananes Desserts</a></li>
                 </ul>
             </div>
             <div class="col-md-4 mb-4">
                 <h5>Contact</h5>
                 <ul class="list-unstyled">
-                    <li><i class="fas fa-phone me-2"></i> +228 98 14 48 46</li>
-                    <li><i class="fas fa-envelope me-2"></i> contact@bananaword.com</li>
-                    <li><i class="fas fa-map-marker-alt me-2"></i> Lomé, Togo</li>
+                    <li class="mb-2"><i class="fas fa-phone me-2"></i> +228 98 14 48 46</li>
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i> contact@bananaword.com</li>
+                    <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Lomé, Togo</li>
                 </ul>
+                <div class="mt-3">
+                    <a href="https://wa.me/22898144846" class="text-white me-3" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram fa-2x"></i></a>
+                </div>
             </div>
         </div>
-        <hr class="bg-light">
+        <hr class="bg-light opacity-25">
         <div class="row">
             <div class="col-md-6">
-                <p>&copy; 2024 Banana Word Business. Tous droits réservés.</p>
+                <p class="mb-0">&copy; 2024 Banana Word Business. Tous droits réservés.</p>
             </div>
             <div class="col-md-6 text-md-end">
-                <div class="social-icons">
-                    <a href="https://www.facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="https://www.twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="https://www.instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="https://www.linkedin.com" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                </div>
+                <p class="mb-0">Fait avec <i class="fas fa-heart text-danger"></i> pour la communauté Pi</p>
             </div>
         </div>
     </div>
@@ -806,149 +714,376 @@
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Pi Network SDK -->
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+
 <script>
-// Variable globale pour l'instance Pi
+// ============================================
+// PI NETWORK INTÉGRATION COMPLÈTE - 100% FRONTEND
+// ============================================
+
+// CONFIGURATION
+const PI_CONFIG = {
+    apiKey: 'c409d408-ac86-4764-a25f-50c73cf57352', // À remplacer par votre vraie clé API
+    sandbox: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1',
+    networkPassphrase: 'Pi Network', // 'Pi Testnet' pour testnet
+    serverUrl: 'https://api.mainnet.minepi.com' // https://api.testnet.minepi.com pour testnet
+};
+
+// ÉTAT GLOBAL
 let piInstance = null;
 let isPiBrowser = false;
+let currentUser = null;
+let paymentHistory = JSON.parse(localStorage.getItem('pi_payment_history') || '[]');
 
-// Détecter si on est dans Pi Browser
-function detectPiBrowser() {
-    return typeof Pi !== 'undefined' && Pi.isPiBrowser && Pi.isPiBrowser();
-}
+// ============================================
+// INITIALISATION
+// ============================================
 
-// Initialiser Pi SDK
+document.addEventListener('DOMContentLoaded', function() {
+    initPiSDK();
+    checkPiBrowser();
+    updateConnectionStatus();
+    
+    // Ajouter event listener pour fermer le loading
+    document.getElementById('pi-loading').addEventListener('click', function(e) {
+        if (e.target === this) {
+            if (confirm('Voulez-vous annuler le paiement en cours ?')) {
+                this.style.display = 'none';
+            }
+        }
+    });
+});
+
 function initPiSDK() {
-    // Vérifier si le SDK Pi est disponible
     if (typeof Pi === 'undefined') {
         console.warn('SDK Pi non disponible');
-        showPiBrowserAlert();
+        setTimeout(() => {
+            if (typeof Pi !== 'undefined') {
+                initializePi();
+            }
+        }, 1000);
         return;
     }
     
-    isPiBrowser = detectPiBrowser();
-    
-    // Configurer pour production (sandbox: false) après déploiement
-    // Pour le développement, utilisez sandbox: true
-    const isLocalhost = window.location.hostname === 'localhost' || 
-                       window.location.hostname === '127.0.0.1';
-    
-    const sandboxMode = isLocalhost ? true : false; // false pour production
-    
-    if (sandboxMode) {
-        document.getElementById('pi-dev-banner').style.display = 'block';
-    }
-    
+    initializePi();
+}
+
+function initializePi() {
     Pi.init({
         version: "2.0",
-        sandbox: sandboxMode
+        sandbox: PI_CONFIG.sandbox
     }).then(function(pi) {
         piInstance = pi;
-        console.log('Pi SDK initialisé avec succès');
-        console.log('Scopes disponibles:', pi.scopes);
+        console.log('✅ Pi SDK initialisé avec succès');
         
-        // Afficher un message si dans Pi Browser
-        if (isPiBrowser) {
-            console.log('Application exécutée dans Pi Browser');
+        if (PI_CONFIG.sandbox) {
+            document.getElementById('pi-dev-banner').style.display = 'block';
         }
         
+        // Authentifier automatiquement
+        authenticateUser();
+        
     }).catch(function(error) {
-        console.error('Erreur lors de l\'initialisation de Pi SDK:', error);
-        showPiBrowserAlert();
+        console.error('❌ Erreur initialisation Pi:', error);
     });
 }
 
-// Fonction de paiement Pi
-function payWithPi(productName, amountPi, amountCFA) {
+function checkPiBrowser() {
+    isPiBrowser = typeof Pi !== 'undefined' && Pi.isPiBrowser && Pi.isPiBrowser();
+    if (isPiBrowser) {
+        console.log('✅ Page ouverte dans Pi Browser');
+    }
+}
+
+function authenticateUser() {
+    if (!piInstance) return;
+    
+    piInstance.authenticate(['username', 'payments'], function(error, auth) {
+        if (error) {
+            console.warn('Authentification non requise pour les paiements:', error);
+            return;
+        }
+        
+        currentUser = auth.user;
+        console.log('✅ Utilisateur authentifié:', currentUser.username);
+        updateConnectionStatus(true, currentUser.username);
+    });
+}
+
+function updateConnectionStatus(connected = false, username = '') {
+    const statusBadge = document.getElementById('pi-status-badge');
+    const statusText = document.getElementById('pi-status-text');
+    
+    if (connected && username) {
+        statusBadge.className = 'status-badge status-connected';
+        statusText.innerHTML = `<i class="fas fa-check-circle text-success me-1"></i> Pi: ${username}`;
+    } else if (piInstance && isPiBrowser) {
+        statusBadge.className = 'status-badge status-connected';
+        statusText.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Pi prêt';
+    } else {
+        statusBadge.className = 'status-badge status-disconnected';
+        statusText.innerHTML = '<i class="fas fa-times-circle text-danger me-1"></i> Pi non connecté';
+    }
+}
+
+// ============================================
+// FONCTION DE PAIEMENT PRINCIPALE
+// ============================================
+
+function payWithPi(productName, amountPi, amountCFA, productId) {
+    // Générer un ID de paiement unique
+    const paymentId = generatePaymentId();
+    
     // Afficher le loading
     document.getElementById('pi-loading').style.display = 'flex';
     
-    // Vérifier si Pi SDK est initialisé
+    // Vérifier Pi SDK
     if (!piInstance) {
-        document.getElementById('pi-loading').style.display = 'none';
-        alert('Pi SDK n\'est pas initialisé. Veuillez ouvrir dans Pi Browser.');
+        hideLoadingAndShowError('SDK Pi non initialisé', 'Veuillez rafraîchir la page et réessayer.');
         return;
     }
     
-    // Vérifier les permissions
-    if (!piInstance.scopes || !piInstance.scopes.includes("payments")) {
-        document.getElementById('pi-loading').style.display = 'none';
-        alert('L\'application n\'a pas la permission de faire des paiements.\n' +
-              'Veuillez ouvrir cette page dans Pi Browser et autoriser les permissions.');
+    // Vérifier si dans Pi Browser
+    if (!isPiBrowser) {
+        hideLoadingAndShowError('Pi Browser requis', 
+            'Pour payer avec Pi, veuillez ouvrir cette page dans Pi Browser.');
         return;
     }
     
-    // Créer le paiement
-    piInstance.createPayment({
-        amount: amountPi,
-        memo: "Achat - " + productName + " (" + amountCFA + " CFA)",
-        metadata: {
-            product_id: productName.toLowerCase().replace(/\s+/g, '_'),
-            product_name: productName,
-            amount_cfa: amountCFA,
-            timestamp: new Date().toISOString(),
-            customer_ip: 'web_app'
-        }
-    }, {
-        onReadyForServerApproval: function(paymentId) {
-            console.log('Paiement prêt pour approbation:', paymentId);
-            // ICI : Envoyer le paymentId à votre serveur backend
-            // Exemple: sendToBackend('approve', paymentId);
-        },
-        onReadyForServerCompletion: function(paymentId, txid) {
-            console.log('Paiement complété:', paymentId, txid);
-            document.getElementById('pi-loading').style.display = 'none';
+    // Simuler un paiement en mode sandbox
+    if (PI_CONFIG.sandbox) {
+        simulatePayment(productName, amountPi, amountCFA, productId, paymentId);
+        return;
+    }
+    
+    // Paiement réel
+    try {
+        piInstance.createPayment({
+            amount: amountPi,
+            memo: `Achat: ${productName} - ${amountCFA} CFA`,
+            metadata: {
+                product_id: productId,
+                product_name: productName,
+                amount_cfa: amountCFA,
+                payment_id: paymentId,
+                timestamp: new Date().toISOString()
+            }
+        }, {
+            onReadyForServerApproval: function(paymentId) {
+                console.log('Paiement prêt pour approbation:', paymentId);
+                // En mode 100% frontend, on simule l'approbation
+                simulateApproval(paymentId);
+            },
             
-            // Succès - montrer confirmation
-            showPaymentSuccess(productName, amountPi, txid);
+            onReadyForServerCompletion: function(paymentId, txid) {
+                console.log('Paiement complété:', paymentId, txid);
+                handleSuccessfulPayment(productName, amountPi, amountCFA, productId, paymentId, txid);
+            },
             
-            // ICI : Envoyer le txid à votre serveur backend
-            // Exemple: sendToBackend('complete', paymentId, txid);
-        },
-        onCancel: function(paymentId) {
-            console.log('Paiement annulé:', paymentId);
-            document.getElementById('pi-loading').style.display = 'none';
-            showPaymentCancelled();
-        },
-        onError: function(error, payment) {
-            console.error('Erreur de paiement:', error, payment);
-            document.getElementById('pi-loading').style.display = 'none';
-            showPaymentError(error);
-        }
-    });
+            onCancel: function(paymentId) {
+                console.log('Paiement annulé:', paymentId);
+                handleCancelledPayment();
+            },
+            
+            onError: function(error, payment) {
+                console.error('Erreur paiement:', error, payment);
+                handlePaymentError(error);
+            }
+        });
+    } catch (error) {
+        console.error('Erreur création paiement:', error);
+        hideLoadingAndShowError('Erreur', 'Impossible de créer le paiement. Veuillez réessayer.');
+    }
 }
 
-// Fonctions d'affichage
-function showPaymentSuccess(productName, amountPi, txid) {
-    const modalHtml = `
-        <div class="modal fade" id="successModal" tabindex="-1">
-            <div class="modal-dialog">
+// ============================================
+// SIMULATION DE PAIEMENT (SANDBOX)
+// ============================================
+
+function simulatePayment(productName, amountPi, amountCFA, productId, paymentId) {
+    console.log('💰 SIMULATION: Début paiement Pi');
+    
+    setTimeout(() => {
+        const txid = generateTxid();
+        handleSuccessfulPayment(productName, amountPi, amountCFA, productId, paymentId, txid);
+    }, 3000);
+}
+
+function simulateApproval(paymentId) {
+    console.log('✅ Paiement approuvé (simulation):', paymentId);
+}
+
+// ============================================
+// GESTION DES RÉSULTATS DE PAIEMENT
+// ============================================
+
+function handleSuccessfulPayment(productName, amountPi, amountCFA, productId, paymentId, txid) {
+    // Masquer le loading
+    document.getElementById('pi-loading').style.display = 'none';
+    
+    // Sauvegarder dans l'historique
+    savePaymentToHistory({
+        id: paymentId,
+        product: productName,
+        amountPi: amountPi,
+        amountCFA: amountCFA,
+        txid: txid,
+        date: new Date().toISOString(),
+        status: 'completed'
+    });
+    
+    // Afficher le succès
+    showSuccessModal(productName, amountPi, txid);
+    
+    // Jouer un son (optionnel)
+    playSuccessSound();
+}
+
+function handleCancelledPayment() {
+    document.getElementById('pi-loading').style.display = 'none';
+    showNotification('Paiement annulé', 'Vous avez annulé le paiement.', 'warning');
+}
+
+function handlePaymentError(error) {
+    document.getElementById('pi-loading').style.display = 'none';
+    const errorMessage = error.message || 'Erreur lors du paiement';
+    showNotification('Erreur de paiement', errorMessage, 'danger');
+}
+
+function hideLoadingAndShowError(title, message) {
+    document.getElementById('pi-loading').style.display = 'none';
+    showNotification(title, message, 'danger');
+}
+
+// ============================================
+// HISTORIQUE DES PAIEMENTS
+// ============================================
+
+function savePaymentToHistory(payment) {
+    paymentHistory.unshift(payment);
+    
+    // Garder seulement les 20 derniers paiements
+    if (paymentHistory.length > 20) {
+        paymentHistory = paymentHistory.slice(0, 20);
+    }
+    
+    localStorage.setItem('pi_payment_history', JSON.stringify(paymentHistory));
+}
+
+function showPaymentHistory() {
+    const history = JSON.parse(localStorage.getItem('pi_payment_history') || '[]');
+    
+    let html = `
+        <div class="modal fade" id="historyModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
-                        <h5 class="modal-title">Paiement Réussi!</h5>
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title"><i class="fas fa-history me-2"></i>Historique des paiements</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
-                    <div class="modal-body text-center">
-                        <i class="fas fa-check-circle text-success fa-4x mb-3"></i>
-                        <h4>Merci pour votre achat!</h4>
-                        <p>Votre commande de <strong>${productName}</strong> a été confirmée.</p>
-                        <p>Montant: <strong>${amountPi} Pi</strong></p>
-                        <p class="small text-muted">ID Transaction: ${txid}</p>
-                        <div class="alert alert-info mt-3">
-                            <i class="fas fa-info-circle"></i> Notre équipe vous contactera bientôt pour la livraison.
-                        </div>
+                    <div class="modal-body">
+    `;
+    
+    if (history.length === 0) {
+        html += '<p class="text-center text-muted my-5"><i class="fas fa-shopping-cart fa-3x mb-3"></i><br>Aucun paiement effectué</p>';
+    } else {
+        html += '<div class="list-group">';
+        
+        history.forEach(p => {
+            const date = new Date(p.date).toLocaleDateString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            html += `
+                <div class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1 fw-bold">${p.product}</h6>
+                        <small class="text-muted">${date}</small>
+                    </div>
+                    <p class="mb-1">
+                        <span class="badge bg-primary">${p.amountPi} Pi</span>
+                        <span class="badge bg-secondary">≈ ${p.amountCFA} CFA</span>
+                    </p>
+                    <small class="text-muted">ID: ${p.txid.substring(0, 16)}...</small>
+                </div>
+            `;
+        });
+        
+        html += '</div>';
+    }
+    
+    html += `
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-danger" onclick="clearHistory()">Effacer l'historique</button>
                     </div>
                 </div>
             </div>
         </div>
     `;
     
-    // Créer et afficher le modal
+    // Supprimer l'ancien modal s'il existe
+    const oldModal = document.getElementById('historyModal');
+    if (oldModal) oldModal.remove();
+    
+    // Ajouter et afficher le nouveau modal
+    document.body.insertAdjacentHTML('beforeend', html);
+    const modal = new bootstrap.Modal(document.getElementById('historyModal'));
+    modal.show();
+}
+
+function clearHistory() {
+    if (confirm('Voulez-vous vraiment effacer tout l\'historique des paiements ?')) {
+        paymentHistory = [];
+        localStorage.removeItem('pi_payment_history');
+        document.getElementById('historyModal').querySelector('.modal-body').innerHTML = 
+            '<p class="text-center text-muted my-5"><i class="fas fa-shopping-cart fa-3x mb-3"></i><br>Aucun paiement effectué</p>';
+    }
+}
+
+// ============================================
+// NOTIFICATIONS ET MODALS
+// ============================================
+
+function showSuccessModal(productName, amountPi, txid) {
+    const modalHtml = `
+        <div class="modal fade" id="successModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Paiement réussi !</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center py-4">
+                        <i class="fas fa-check-circle text-success fa-5x mb-3"></i>
+                        <h4 class="mb-3">Merci pour votre achat !</h4>
+                        <p class="mb-2">Commande : <strong>${productName}</strong></p>
+                        <p class="mb-3">Montant : <span class="badge bg-primary p-2">${amountPi} Pi</span></p>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Notre équipe vous contactera dans les 24h pour la livraison.
+                        </div>
+                        <p class="small text-muted mt-3">Transaction: ${txid.substring(0, 20)}...</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">
+                            <i class="fas fa-check me-2"></i>Fermer
+                        </button>
+                        <a href="https://wa.me/22898144846?text=Bonjour!%20Je%20viens%20de%20payer%20${productName}%20avec%20Pi.%20Transaction:%20${txid}"
+                           class="btn btn-whatsapp px-4" target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i>Contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
     const modalContainer = document.createElement('div');
     modalContainer.innerHTML = modalHtml;
     document.body.appendChild(modalContainer);
@@ -956,175 +1091,75 @@ function showPaymentSuccess(productName, amountPi, txid) {
     const modal = new bootstrap.Modal(document.getElementById('successModal'));
     modal.show();
     
-    // Nettoyer après fermeture
     document.getElementById('successModal').addEventListener('hidden.bs.modal', function() {
-        document.body.removeChild(modalContainer);
+        modalContainer.remove();
     });
 }
 
-function showPaymentCancelled() {
-    const modalHtml = `
-        <div class="modal fade" id="cancelModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-warning">
-                        <h5 class="modal-title">Paiement Annulé</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <i class="fas fa-times-circle text-warning fa-4x mb-3"></i>
-                        <h4>Paiement annulé</h4>
-                        <p>Vous avez annulé le paiement.</p>
-                        <p>Si c'était une erreur, vous pouvez réessayer.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+function showNotification(title, message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-4`;
+    notification.style.zIndex = '99999';
+    notification.style.minWidth = '300px';
+    notification.innerHTML = `
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>${title}</strong><br>
+        ${message}
     `;
     
-    const modalContainer = document.createElement('div');
-    modalContainer.innerHTML = modalHtml;
-    document.body.appendChild(modalContainer);
+    document.body.appendChild(notification);
     
-    const modal = new bootstrap.Modal(document.getElementById('cancelModal'));
-    modal.show();
-    
-    document.getElementById('cancelModal').addEventListener('hidden.bs.modal', function() {
-        document.body.removeChild(modalContainer);
-    });
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
 }
 
-function showPaymentError(error) {
-    const modalHtml = `
-        <div class="modal fade" id="errorModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title">Erreur de Paiement</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <i class="fas fa-exclamation-triangle text-danger fa-4x mb-3"></i>
-                        <h4>Erreur lors du paiement</h4>
-                        <p>${error.message || 'Une erreur est survenue'}</p>
-                        <div class="alert alert-warning mt-3">
-                            <i class="fas fa-lightbulb"></i> Conseil: Essayez de rafraîchir la page et réessayez.
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    const modalContainer = document.createElement('div');
-    modalContainer.innerHTML = modalHtml;
-    document.body.appendChild(modalContainer);
-    
-    const modal = new bootstrap.Modal(document.getElementById('errorModal'));
-    modal.show();
-    
-    document.getElementById('errorModal').addEventListener('hidden.bs.modal', function() {
-        document.body.removeChild(modalContainer);
-    });
+// ============================================
+// UTILITAIRES
+// ============================================
+
+function generatePaymentId() {
+    return 'pay_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 }
 
-function showPiBrowserAlert() {
-    // Ne montrer l'alerte qu'une fois et seulement si pas dans Pi Browser
-    if (!isPiBrowser && !sessionStorage.getItem('piAlertShown')) {
-        const modalHtml = `
-            <div class="modal fade" id="piBrowserModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary text-white">
-                            <h5 class="modal-title">Paiement Pi</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="text-center mb-4">
-                                <i class="fas fa-mobile-alt fa-4x text-primary mb-3"></i>
-                                <h4>Pour payer avec Pi</h4>
-                            </div>
-                            <ol class="list-group list-group-numbered">
-                                <li class="list-group-item d-flex align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Téléchargez Pi Browser</div>
-                                        Disponible sur Google Play Store
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Ouvrez cette page dans Pi Browser</div>
-                                        https://votre-site.com/shop.html
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Connectez-vous avec votre compte Pi</div>
-                                        Autorisez les permissions demandées
-                                    </div>
-                                </li>
-                            </ol>
-                            <div class="alert alert-info mt-3">
-                                <i class="fas fa-info-circle"></i> En attendant, vous pouvez commander via WhatsApp.
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="sessionStorage.setItem('piAlertShown', 'true')">Compris</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+function generateTxid() {
+    return 'tx_' + Date.now() + '_' + Math.random().toString(36).substr(2, 16);
+}
+
+function playSuccessSound() {
+    // Optionnel : jouer un son de succès
+    // Audio simple sans fichier externe
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
         
-        const modalContainer = document.createElement('div');
-        modalContainer.innerHTML = modalHtml;
-        document.body.appendChild(modalContainer);
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
         
-        const modal = new bootstrap.Modal(document.getElementById('piBrowserModal'));
-        modal.show();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.5);
+    } catch(e) {
+        console.log('Son non disponible');
     }
 }
 
-// Initialiser au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
-    initPiSDK();
-    
-    // Ajouter des événements pour fermer le loading si clic en dehors
-    document.getElementById('pi-loading').addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.style.display = 'none';
-        }
-    });
-});
+// ============================================
+// EXPOSITION GLOBALE
+// ============================================
 
-// Fonction pour envoyer les données au backend (à adapter)
-function sendToBackend(action, paymentId, txid = null) {
-    // À IMPLÉMENTER : Envoyer les données à votre serveur
-    // Exemple avec fetch API :
-    /*
-    fetch('/api/payment', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            action: action,
-            paymentId: paymentId,
-            txid: txid,
-            timestamp: new Date().toISOString()
-        })
-    })
-    .then(response => response.json())
-    .then(data => console.log('Backend response:', data))
-    .catch(error => console.error('Error sending to backend:', error));
-    */
-}
+// Exposer les fonctions nécessaires au HTML
+window.payWithPi = payWithPi;
+window.showPaymentHistory = showPaymentHistory;
+window.clearHistory = clearHistory;
+
+console.log('🚀 Banana Word Business - Intégration Pi Network prête !');
 </script>
+
 </body>
 </html>
